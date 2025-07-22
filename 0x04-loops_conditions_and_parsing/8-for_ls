@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# This script lists regular files in the current directory, displaying only the part of the name after the first dash.
+for file in *; do
+    if [ -f "$file" ]; then # Checks if the item is a regular file
+        echo "${file#*-}"  # Bash parameter expansion: removes shortest match from front up to '-'
+    fi
+done
