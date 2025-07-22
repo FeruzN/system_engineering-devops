@@ -3,7 +3,8 @@
 
 # Function to handle SIGTERM
 handle_sigterm() {
-    echo "I am invincible!!!"
+    # Using printf for explicit newline and to ensure output is flushed
+    printf "I am invincible!!!\n"
     # After printing the message, explicitly set SIGTERM to be ignored.
     # This overrides the default termination behavior and allows the loop to continue.
     trap '' SIGTERM
