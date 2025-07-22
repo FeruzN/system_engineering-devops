@@ -1,17 +1,12 @@
 #!/usr/bin/env bash
 # This script displays "To infinity and beyond" indefinitely and handles SIGTERM without terminating.
 
-# Function to handle SIGTERM
-handle_sigterm() {
-    # Using printf for explicit newline and to ensure output is flushed
-    printf "I am invincible!!!\n"
-    # After printing the message, explicitly set SIGTERM to be ignored.
-    # This overrides the default termination behavior and allows the loop to continue.
-    trap '' SIGTERM
-}
-
-# Set the trap for SIGTERM (signal 15) to call the handle_sigterm function
-trap handle_sigterm SIGTERM
+# Set the trap for SIGTERM (signal 15).
+# When SIGTERM is received, it will:
+# 1. Print "I am invincible!!!" using printf for reliable output.
+# 2. Immediately set the trap for SIGTERM to an empty string (''), which tells the shell to ignore subsequent SIGTERMs.
+# This ensures the script truly becomes "invincible" to SIGTERM and continues its loop.
+trap 'printf "I am invincible!!!\n"; trap "" SIGTERM' SIGTERM
 
 # Infinite loop to continuously display the phrase
 while true; do
