@@ -1,4 +1,8 @@
-#!/usr/bin/env bash
-# This script stops the 7-highlander process without using kill or killall.
-# It sends a SIGTERM signal, which 7-highlander is programmed to handle.
-pkill -f "7-highlander"
+#!/bin/bash
+# Infinite loop that handles SIGTERM
+trap 'echo "I am invincible!!!"' SIGTERM
+while true
+do
+    echo "To infinity and beyond"
+    sleep 2
+done
